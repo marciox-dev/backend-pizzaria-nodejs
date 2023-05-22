@@ -12,7 +12,7 @@ const findUserByIdController = async (req, res) => {
 
     } catch (err) {
         if (err.kind == "ObjectId") {
-            
+
             return res.status(400).send({ message: "ID informado está incorreto. Tente novamente" });
         }
 
@@ -36,11 +36,11 @@ const findAllUsersController = async (req, res) => {
 const createUserController = async (req, res) => {
     try {
         const body = req.body;
-        if(!body.nome){
+        if (!body.nome) {
             return res.status(400).send({ message: "O campo NOME precisa ser preenchido" });
         }
 
-        if(!body.email){
+        if (!body.email) {
             return res.status(400).send({ message: "O campo EMAIL precisa ser preenchido" });
         }
 
@@ -57,7 +57,7 @@ const updateUserController = async (req, res) => {
     try {
         const body = req.body;
 
-        if(!body.nome){
+        if (!body.nome) {
             return res.status(400).send({ message: "O campo NOME precisa ser preenchido" });
         }
 
@@ -76,12 +76,12 @@ const removeUserController = async (req, res) => {
 
         const deletedUser = await userService.removeUserService(req.params.id);
 
-        console.log(deletedUser);    
-        
-        
-        if(deletedUser == null){
+        console.log(deletedUser);
+
+
+        if (deletedUser == null) {
             res.status(404).send({ message: `Usuário não encontrado, tente novamente` });
-        }else{
+        } else {
             res.status(200).send({ message: `Sucesso! Usuário deletado` });
         }
 
@@ -97,10 +97,11 @@ const addUserAddressController = async (req, res) => {
         req.body.createdAt = new Date();
         const endereco = await userService.addUserAddressService(req.params.id, req.body)
 
-        if(endereco.ok == 1){
-            res.status(201).send({ message: `Endereço adicionado com sucesso!` });
-        }else{
+        if (endereco.value == null) {
             res.status(400).send({ message: `Algo deu errado no endereço, tente novamente` });
+
+        } else {
+            res.status(201).send({ message: `Endereço adicionado com sucesso!` });
         }
 
     } catch (err) {
@@ -113,9 +114,17 @@ const addUserAddressController = async (req, res) => {
 const removeUserAddressController = async (req, res) => {
     try {
         const endereco = await userService.removeUserAddressService(req.body.id, req.body.addressId)
-        if(endereco.ok == 1){
+        let found = false;
+
+        endereco.value.enderecos.map((valor, chave) => {
+            if (valor._id == req.body.addressId) {
+                found = true;
+            }
+        })
+
+        if (found) {
             res.status(200).send({ message: `Endereço removido com sucesso!` });
-        }else{
+        } else {
             res.status(400).send({ message: `Algo deu errado no endereço, não foi removido, tente novamente` });
         }
 
