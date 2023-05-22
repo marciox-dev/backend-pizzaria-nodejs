@@ -11,10 +11,10 @@ const UsuarioSchema = new mongoose.Schema({
             numero: { type: Number, required: true },
             complemento: { type: String, required: false },
             CEP: { type: String, required: true },
-            createdAt: { type: Date, required: true },
+            createdAt: { type: Date, required: true, default: Date.now() },
         }
     ],
-    createdAt: { type: Date, required: true },
+    createdAt: { type: Date, required: true, default: Date.now() },
     admin: { type: Boolean, required: true, default: false } 
 });
 
