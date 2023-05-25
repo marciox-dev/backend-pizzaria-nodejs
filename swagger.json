@@ -1,0 +1,52 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API Pizzaria",
+        "description": "API de Pizzaria completa, contendo o CRUD de diversos assuntos.",
+        "contact": {
+            "name": "Marcio",
+            "email": "marcio@tucanotech.com.br"
+        },
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:3000/",
+            "description": "API de Teste LOCAL"
+        },
+        {
+            "url": "https://aws.aamzon.com.br/js89s/pizzaria/",
+            "description": "API de Producão CLOUD"
+        }
+    ],
+    "paths": {
+        "/usuario/findAll/": {
+            "get": {
+                "summary": "Lista todos os usuários da API",
+                "description": "Rota responsável por listar da API Pizzaria",
+                "tags": ["Usuarios"],
+                "responses": {
+                    "200": {
+                        "description": "Ok, tarefa realizada com sucesso"
+                    },
+                    "401": {
+                        "description": "Unauthorized. Erro de autenticação, problemas com o token"
+                    },
+                    "404": {
+                        "description": "Not found, nenhum usuário foi encontrado"
+                    },
+                    "500": {
+                        "description": "Internal Server Erros, alguma coisa errada no servidor"
+                    }
+                }
+            }
+        },
+        "/usuario/find": {
+            "get": {
+                "summary": "Lista o usuário que corresponde com o ID informado",
+                "description": "Rota responsável por localizar um usuário da API através do ID indormado.",
+                "tags": ["Usuarios"]
+            }
+        }
+    }
+}
