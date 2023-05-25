@@ -44,7 +44,7 @@
         "/usuario/find": {
             "get": {
                 "summary": "Lista o usuário que corresponde com o ID informado",
-                "description": "Rota responsável por localizar um usuário da API através do ID indormado.",
+                "description": "Rota responsável por localizar um usuário da API através do ID informado.",
                 "tags": ["Usuarios"]
             }
         }
