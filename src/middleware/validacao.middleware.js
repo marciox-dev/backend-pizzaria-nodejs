@@ -17,7 +17,7 @@ const validaUsuario = (req, res, next) => {
 
         return res.status(400).send({ message: `O campo IMAGEM precisa ser preenchido!` });
     }
-    if (!req.body.admin) {
+    if (req.body.admin == undefined) {
 
         return res.status(400).send({ message: `O campo ADMIN precisa ser preenchido!` });
     }
@@ -175,7 +175,7 @@ const validaLogin = (req, res, next) => {
 
 const validaProdutosCarrinhoPedido = (req, res, next) => {
     let erros = [];
-    
+
     req.body.produtos.map(( value, key ) => {
         if(!value._id){
             erros.push(`'${key+1} - _id'`)
