@@ -28,7 +28,7 @@
                     }
                 ],
                 "summary": "Lista todos os usuários da API",
-                "description": "Rota responsável por listar da API Pizzaria",
+                "description": "Rota responsável por listar todos os usuários da API Pizzaria",
                 "tags": [
                     "Usuario"
                 ],
@@ -111,7 +111,7 @@
                 }
             }
         },
-        "/usuario/find/{id}": {
+        "/usuario/findById/{id}": {
             "get": {
                 "security": [
                     {
@@ -125,10 +125,10 @@
                 ],
                 "parameters": [
                     {
-                        "in": "query",
-                        "required": "true",
+                        "in": "path",
+                        "required": true,
                         "schema": {
-                            "type": "integer"
+                            "type": "string"
                         },
                         "name": "id"
                     }
@@ -200,16 +200,17 @@
                 "tags": [
                     "Usuario"
                 ],
-                "parameters": [
-                    {
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/components/schemas/Usuario"
-                        },
-                        "name": "body"
-                    }
-                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type":"object",
+                                "$ref":"#/components/schemas/Usuario"
+                            }
+                        }
+                    },
+                    "required":true
+                },
                 "responses": {
                     "201": {
                         "description": "Retorna o objeto criado no banco.",
@@ -254,22 +255,25 @@
                 ],
                 "parameters": [
                     {
-                        "in": "query",
+                        "in": "path",
                         "required": true,
                         "schema": {
-                            "type": "integer"
+                            "type": "string"
                         },
                         "name": "id"
-                    },
-                    {
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/components/schemas/Usuario"
-                        },
-                        "name": "body"
-                    }
+                    }   
                 ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type":"object",
+                                "$ref":"#/components/schemas/Usuario"
+                            }
+                        }
+                    },
+                    "required":true
+                },
                 "responses": {
                     "200": {
                         "description": "Retorna o objeto atualizado do banco",
@@ -330,7 +334,7 @@
                 }
             }
         },
-        "/usuario/delete/{id}": {
+        "/usuario/remove/{id}": {
             "delete": {
                 "security": [
                     {
@@ -344,10 +348,10 @@
                 ],
                 "parameters": [
                     {
-                        "in": "query",
+                        "in": "path",
                         "required": "true",
                         "schema": {
-                            "type": "integer"
+                            "type": "string"
                         },
                         "name": "id"
                     }
@@ -426,22 +430,25 @@
                 ],
                 "parameters": [
                     {
-                        "in": "query",
+                        "in": "path",
                         "required": "true",
                         "schema": {
-                            "type": "integer"
+                            "type": "string"
                         },
                         "name": "id"
-                    },
-                    {
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/components/schemas/Usuario"
-                        },
-                        "name": "body"
                     }
                 ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type":"object",
+                                "$ref":"#/components/schemas/UserAddress"
+                            }
+                        }
+                    },
+                    "required":true
+                },
                 "responses": {
                     "201": {
                         "description": "Retorna um usuário com o seu novo endereço.",
@@ -502,7 +509,7 @@
                 }
             }
         },
-        "/usuario/removeAddress/{id}": {
+        "/usuario/removeAddress/": {
             "delete": {
                 "security": [
                     {
@@ -514,16 +521,27 @@
                 "tags": [
                     "Usuario"
                 ],
-                "parameters": [
-                    {
-                        "in": "query",
-                        "required": "true",
-                        "schema": {
-                            "type": "integer"
-                        },
-                        "name": "id"
-                    }
-                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type":"object",
+                                "properties":{
+                                    "id":{
+                                        "type": "string"
+                                    },
+                                    "addressId":{
+                                        "type": "string"
+                                    }
+
+                                }
+
+                            }
+                        }
+                    },
+                    "required":true
+                },
+             
                 "responses": {
                     "200": {
                         "description": "Retorna um usuário com o seu o endereço removido.",
