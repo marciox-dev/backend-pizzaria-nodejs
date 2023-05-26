@@ -35,15 +35,6 @@ const findAllUsersController = async (req, res) => {
 
 const createUserController = async (req, res) => {
     try {
-        const body = req.body;
-        if (!body.nome) {
-            return res.status(400).send({ message: "O campo NOME precisa ser preenchido" });
-        }
-
-        if (!body.email) {
-            return res.status(400).send({ message: "O campo EMAIL precisa ser preenchido" });
-        }
-
         return res.status(201).send(await userService.createUserService(body));
 
     } catch (err) {
