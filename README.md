@@ -21,6 +21,7 @@ Todos os endpoints da nossa aplicação serão listados abaixo:
 
 Todos os endpoints do usuário:
 
+
 /findById
 
 200 - retorna um usuário válido
@@ -30,6 +31,68 @@ Todos os endpoints do usuário:
 401 - retorna o erro de autenticação
 
 404 - retorna uma mensagem informando que não encontrou o usuário
+
+
+/findAll
+
+200 - retorna todos os usuários do banco de dados
+
+401- retorna uma mensagem informando o erro
+
+404 - retorna o erro de autenticação
+
+500 - retorna uma mensagem de Internal Server Error
+
+
+/create
+
+201 - retorna o usuário que acabou de ser criado
+
+500 - retorna uma mensagem de Internal Server Error
+
+
+/update
+
+200 - retorna os dados do usuário atualizados
+
+401- retorna uma mensagem informando o erro
+
+404 - retorna o erro de autenticação
+
+500 - retorna uma mensagem de Internal Server Error
+
+
+/remove
+
+200 - retorna os dados que foram removidos do usuário
+
+401- retorna uma mensagem informando o erro
+
+404 - retorna o erro de autenticação
+
+500 - retorna uma mensagem de Internal Server Error
+
+
+/addAddress
+
+201 - retorna o endereço que foi adicionado ao usuário
+
+401- retorna uma mensagem informando o erro
+
+404 - retorna o erro de autenticação
+
+500 - retorna uma mensagem de Internal Server Error
+
+
+/removeAddress
+
+200 - retorna os dados do usuário sem o endereço que foi removido
+
+401- retorna uma mensagem informando o erro
+
+404 - retorna o erro de autenticação
+
+500 - retorna uma mensagem de Internal Server Error
 
 
 Trecho do código do controller findById:
