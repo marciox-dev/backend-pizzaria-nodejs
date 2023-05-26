@@ -29,6 +29,30 @@ Todos os endpoints do usuário:
 
 404 - retorna uma mensagem informando que não encontrou o usuário
 
+```javascript
+const findUserByIdController = async (req, res) => {
+    try {
+        const user = await userService.findUserByIdService(req.params.id);
+
+        if (!user) {
+            return res.status(404).send({ message: "Usuario nao encontrado. Tente novamente." });
+        }
+
+        return res.status(200).send(user);
+
+    } catch (err) {
+        if (err.kind == "ObjectId") {
+
+            return res.status(400).send({ message: "ID informado está incorreto. Tente novamente" });
+        }
+
+        console.log(`erro: ${err.message}`);
+        return res.status(500).send({ message: "Erro inesperado. Tente novamente!" });
+
+    }
+};
+
+```
 
 ### Produto
 
