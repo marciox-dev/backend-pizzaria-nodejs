@@ -2,6 +2,9 @@
 
 Repositório para o projeto de um backend de uma pizzaria
 
+Código desenvolvido em JavaScript
+
+![NodeJS logo!](https://www.opus-software.com.br/wp-content/uploads/2018/09/nodejs.jpg "Node JS")
 
 ## Instalação
 
@@ -14,7 +17,6 @@ Repositório para o projeto de um backend de uma pizzaria
 
 Todos os endpoints da nossa aplicação serão listados abaixo:
 
-
 ### Usuário
 
 Todos os endpoints do usuário:
@@ -25,9 +27,12 @@ Todos os endpoints do usuário:
 
 400 - retorna uma mensagem informando o erro
 
-401 - retorna o erro de autenticação 
+401 - retorna o erro de autenticação
 
 404 - retorna uma mensagem informando que não encontrou o usuário
+
+
+Trecho do código do controller findById:
 
 ```javascript
 const findUserByIdController = async (req, res) => {
@@ -60,8 +65,6 @@ Todos os endpoints de produto listados abaixo:
 
 /find
 
-
 ### Carrinho
-
 
 ### Pedido
