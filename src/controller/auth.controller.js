@@ -11,6 +11,7 @@ const loginController = async (req, res) => {
     }
 
     const isPasswordValid = await bcrypt.compare(senha, user.senha);
+    
     if(!isPasswordValid){
         return res.status(400).send({ message: "Senha inválida!"})
     }
