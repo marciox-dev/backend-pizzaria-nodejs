@@ -35,7 +35,7 @@ const findAllUsersController = async (req, res) => {
 
 const createUserController = async (req, res) => {
     try {
-        return res.status(201).send(await userService.createUserService(body));
+        return res.status(201).send(await userService.createUserService(req.body));
 
     } catch (err) {
         console.log(`erro: ${err.message}`);
